@@ -1,27 +1,18 @@
-import {createServer} from 'http';
-import {Server} from "socket.io";
-import express from 'express';
-import cors from 'cors';
-import jwt from 'jsonwebtoken';
-import bcryptjs from 'bcryptjs';
-
+const { createServer } = require('http');
+const { Server } = require('socket.io');
+const express = require('express');
+const cors = require('cors');
 
 const app = express();
 const server = createServer(app);
-const io = new Server(server);
-
-// Настройка CORS
-app.use(cors());
-
-
-
-const httpServer=createServer();
-const io=new Server(httpServer,{
-    cors:{
-        origin:"*"
-    }
+const io = new Server(server, {
+    cors: {
+        origin: "*",
+    },
 });
 
-httpServer.listen(3000,()=>{
+app.use(cors());
+
+server.listen(3000, () => {
     console.log("Server started on port 3000");
-})
+});
